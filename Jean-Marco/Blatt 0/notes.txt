@@ -1,0 +1,49 @@
+1) Mehr Rechenoperationen führen zu vielen Fehlern durch Rundungen: Instabilität bei b) und c), weil es dort im Vergleich zu a) deutlich mehr Rechenoperationen gibt.
+[Dateibeziechnungen obvious]
+
+2a)
+Nach L'Hospital: -1/6
+2b)
+In 2a.png ist gezeigt, wie sich für x=10^(-n) der Wert gegen den berechneten Wert von -1/6 annähert. Es ist auffällig, dass ab n=14 der Wert zunächst starke Abweichungen aufzeigt und ab n=16 sogar 0 anzeigt. Grund dafür ist, dass bei n=16 aus sqrt(9-x) nur noch 3 wird, so dass 3-3 gerechnet wird, der Zähler null wird und somit der gesamte errechnete Wert 0. Die Information der Nachkommastellen geht also verloren. Dieser Prozess beginnt jedoch schon bei n=14.
+
+Zusatz: in 2_a_abw.png sind die Abweichungen in Prozent für den Bereich bis n=13 aufgezeichnet. Hier sieht man, dass eine gute Genauigkeit ab n=3 bereits erreicht wird, und bei n=12 bereits beginnt abzunehmen.
+
+3a)
+Offensichtlich sollte 2/3 erwartet werden.
+In 3a.png ist dargestellt, wie sich der errechnete Wert für größer werdendes x verhält. Die gründe Linie zeigt den Idealwert, die roten Linien das Fehlerintervall an.
+Man sieht ein "periodisches" Verhalten. Das Ergebnis weicht für ca. x<40000 nicht mehr als 1 % ab. Dies kann in 3a_2.png genauer betrachtet werden. Das Ergebnis wird für ca. x>170000 dauerhaft null.
+
+3b)
+In 3b.png sieht man einen groberen, in 3b_2.png einen genaueren Überblick mit den identischen Linien von 3a).
+Die Bereiche, wo das Ergebnis mehr als 1% abweicht, verteilen sich diesmal periodisch im Bereich -0.00005 < X < 0.00005.
+Genau 0 wird es durchgehend im Bereich -0.00001<X<0.00001.
+
+4a)
+Sie ist nicht überall stabil. Sie wird für
+  1 - beta^2 * cos^2(theta) = 0
+instabil. Dies entspricht bei den gegebenen Energien ziemlich genau 0, pi, 2*pi, ....
+
+4b)
+Der Term
+  1 - beta12 * cos^2(theta)
+lässt sich immerhin umformen zu
+  1/gamma**2 + beta**2 * sin^2(theta)
+Dieser sollte keine Instabilität an den gegebenen Stellen mehr aufweisen, siehe Teilaufgabe c)
+
+4c)
+In Abbildung 4.png ist gezeigt, wie sich die Gleichung für kleine theta im Originalen verhält: Man erkennt die Instabilität an den Stufen.
+In Abbildung 4_2.png ist die verbesserte Gleichung im identischen Bereich geplottet: Die Instabilität ist aufgehoben, wie man an dem durchgehenden Graphen sieht.
+
+4d)
+Die Ableitung (mit Wolfram Alpha) ergibt
+  \frac{\alpha^2}{s} \frac{ (1-3\beta^2) \sin{2\theta} }{(b^2 \cos{\theta}^2 -1)^2}
+Die Konditionszahl errechnet sich nach
+  (f'/f) * theta
+und dementsprechend zu
+  \frac{(1-3 \beta^3) \sin{2\theta} }{(b^2 \cos{\theta}^2 -1) ( 2+\sin{\theta}^2)}
+. Doofes Tex.
+
+4e)
+Die Konditionszahl ist in Abhängigkeit von theta in 4e.png abgebildet.
+Um die Bereiche 0 und 2*pi ergibt sich eine schlechte Konditionsnierung, mit schwarzen Balken in etwa gekenneichnet.
+Dazwischen hat man eine gute Konditionierung.
