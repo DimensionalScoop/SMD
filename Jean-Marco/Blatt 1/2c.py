@@ -5,10 +5,11 @@ canvas.Divide(3,2)
 zufall = ROOT.TRandom(34123) # Zufallsgenerator mit random seed
 a=[]
 for i in range(10**5):
-    a.append(zufall.Uniform(0,1))
+    a.append(zufall.Integer(100)+1)
+
 
 a=np.log(a)
-
+print(a.max)
 canvas.cd(1)
 h = ROOT.TH1D("Zufall", "Zufall, bins=5", 5, min(a), max(a))
 for tmp in a:
