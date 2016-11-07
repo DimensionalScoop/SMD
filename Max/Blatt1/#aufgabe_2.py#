@@ -1,7 +1,0 @@
-import ROOT
-
-random_gen = ROOT.TRandom3()
-random_gen.Gaus()
-
-from numpy import *
-
