@@ -5,9 +5,10 @@ from matplotlib import cm
 import matplotlib.pyplot as plt
 import smd
 from scipy.optimize import newton
+from matplotlib.lines import Line2D
 
 smd.enable_tex_for_plotting()
-plot_accuracy = 200
+plot_accuracy = 70
 plot_frame = 7
 
 μ = np.array((4, 2))
@@ -45,14 +46,14 @@ def generate_3D_plot_data():
     return (X, Y, Z)
 
 
-plot_data = generate_3D_plot_data()
+plot_data_cov = generate_3D_plot_data()
 
 # Draw a contour plot of the whole gaussian
-c = plt.contourf(*plot_data, cmap=cm.hot)
+c = plt.contourf(*plot_data_cov, cmap=cm.hot)
 plt.colorbar(c)
 
 # b) Draw a contour where Z is at e^-0.5, i.e. the ellipsis
-plt.contour(*plot_data, [prefactor / np.sqrt(np.e)], colors="g")
+plt.contour(*plot_data_cov, [prefactor / np.sqrt(np.e)], colors="g")
 plt.plot(0, 0, label="$e^{-0.5}$-Ellipse", color="g")  # cheat a legend for the contour plot
 
 # c) Draw sigmas
@@ -65,19 +66,52 @@ root = newton(lambda x: smd.rotate(Σ, x)[0, 1], 0)
 assert np.abs(Σ[0, 1]) < 1e-7
 assert np.abs(Σ[1, 0]) < 1e-7
 
-σ = (np.sqrt(Σ[0, 0]), np.sqrt(Σ[1, 1]))
+σ_new = (np.sqrt(Σ[0, 0]), np.sqrt(Σ[1, 1]))
 
 print("d) Angle:", root / np.pi, "*π")
-print("σ_x':", σ[0])
-print("σ_y':", σ[1])
+print("σ_x':", σ_new[0])
+print("σ_y':", σ_new[1])
 
-plot_data = generate_3D_plot_data()
-plt.contour(*plot_data, [prefactor / np.sqrt(np.e)], colors="m")
-plt.plot(0, 0, label="$e^{-0.5}$-Ellipse", color="m")  # cheat a legend for the contour plot
 
 # d) Draw sigmas
-plt.errorbar(*μ, xerr=σ[0], yerr=σ[1], fmt='m', label=r'$\mu \pm \sigma^{,}$')
+plt.errorbar(*μ, xerr=σ_new[0], yerr=σ_new[1], fmt='m', label=r'$\mu \pm \sigma^{,}$')
+
 
 plt.gca().set_aspect('equal')
 plt.legend(loc='best')
 plt.savefig("fig/4c.pdf")
+plt.clf()
+
+# e) Draw angle
+
+fig = plt.figure()  # seems like some things can't be done without OO
+ax = fig.add_subplot(1, 1, 1)
+
+# plot ellipses again
+plot_data_new = generate_3D_plot_data()
+plt.contour(*plot_data_new, [prefactor / np.sqrt(np.e)], colors="m")
+plt.plot(0, 0, label="$e^{-0.5}$-Ellipse", color="m")  # cheat a legend for the contour plot
+
+plt.contour(*plot_data_cov, [prefactor / np.sqrt(np.e)], colors="g")
+plt.plot(0, 0, label="$e^{-0.5}$-Ellipse", color="g")  # cheat a legend for the contour plot
+
+
+offset = 0
+
+x_new = (μ[0], μ[0] + 5)
+y_new = (μ[1] + offset, μ[1] + offset)
+
+x_cov = (μ[0], μ[0] + 5 * np.cos(root))
+y_cov = (μ[1] + offset, μ[1] + 5 * np.sin(root) + offset)
+
+
+line_1 = Line2D(x_cov, y_cov, linewidth=1, linestyle="-", color="black")
+line_2 = Line2D(x_new, y_new, linewidth=1, linestyle="-", color="black")
+
+ax.add_line(line_1)
+ax.add_line(line_2)
+ax.text(x_new[0] + 1.5, y_new[0] + 0.1, r'$\theta$', color="black")
+
+plt.gca().set_aspect('equal')
+plt.legend(loc='best')
+plt.savefig("fig/4e.pdf")

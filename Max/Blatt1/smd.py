@@ -3,6 +3,8 @@ import numpy.linalg as linalg
 from scipy.linalg import expm
 import matplotlib.pyplot as plt
 import scipy.integrate as integrate
+import math
+from matplotlib.patches import Arc
 
 
 def enable_tex_for_plotting():
