@@ -23,8 +23,8 @@ print("a)", ρ)
 
 
 # Generate mesh for b)
-x = np.linspace(4 - 10, 4 + 10, 100)
-y = np.linspace(2 - 10, 2 + 10, 100)
+x = np.linspace(4 - 7, 4 + 7, 100 * 2)
+y = np.linspace(2 - 7, 2 + 7, 100 * 2)
 X, Y = np.meshgrid(x, y)
 
 
@@ -32,25 +32,25 @@ def gauss(x):
     return smd.gauss_multivariate(x, Σ, μ)
 prefactor = smd.gauss_multivariate_prefactor(Σ)
 
-# Exponent of the Gaussian
-# F = k_0 * np.exp(-1 / 2 * (gauß_exp(X, μ[0], σ[0]) + gauß_exp(Y, μ[1], σ[1])))
 
 # Fill matrix with values of the Gaussian at different positions
 Z = np.zeros((x.size, y.size))
-F = []
 for i, f_x in enumerate(x):
     for j, f_y in enumerate(y):
-        Z[i, j] = gauss((f_x, f_y))
-        F.append((f_x, f_y, Z[f_x, f_y]))
-F = np.array(F)
+        Z[j, i] = gauss((f_x, f_y))  # still strange; why do I have to switch j and i ?
 
-# Only draw contour where F(X,Y) = 1, i.a. the ellipsis
-#plt.contour(X, Y, F, [prefactor / np.sqrt(np.e)])
 
+# Draw a contour plot of the whole gaussian
+c = plt.contourf(X, Y, Z, cmap=cm.hot)
+plt.colorbar(c)
+
+# Draw a contour where Z is at e^-0.5, i.a. the ellipsis
+plt.contour(X, Y, Z, [prefactor / np.sqrt(np.e)])
+plt.plot(0, 0, label="$e^{-0.5}$-Ellipse")  # cheat a legend for the contour plot
+
+# Draw sigmas
 plt.errorbar(*μ, xerr=σ[0], yerr=σ[1], fmt='g', label=r'$\mu \pm \sigma$')
 
-
-plt.contourf(X, Y, Z, cmap=cm.jet)
-
+plt.gca().set_aspect('equal')
 plt.legend(loc='best')
 plt.savefig("fig/4b.pdf")

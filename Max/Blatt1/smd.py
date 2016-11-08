@@ -26,7 +26,7 @@ def variance_gauss(σ, μ):
 
 def gauss_multivariate_prefactor(Σ):
     dim = Σ.size
-    return np.sqrt((2 * np.pi)**dim * linalg.det(Σ))
+    return 1 / np.sqrt((2 * np.pi)**dim * linalg.det(Σ))
 
 
 def gauss_multivariate(x, Σ, μ):
@@ -39,6 +39,6 @@ def gauss_multivariate(x, Σ, μ):
     N = gauss_multivariate_prefactor(Σ)
     exp = -1 / 2 * np.dot(np.dot((x - μ).T, linalg.inv(Σ)), (x - μ))
 
-    result = 1 / N * np.exp(exp)
+    result = N * np.exp(exp)
     assert np.size(result) == 1
     return result
