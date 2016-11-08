@@ -6,6 +6,7 @@ import matplotlib.pyplot as plt
 import smd
 from scipy.optimize import newton
 from matplotlib.lines import Line2D
+import scipy.integrate as integrate
 
 smd.enable_tex_for_plotting()
 plot_accuracy = 70
@@ -30,7 +31,22 @@ def gauss(x):
 prefactor = smd.gauss_multivariate_prefactor(Σ)
 
 
-def generate_3D_plot_data():
+# f)
+g = lambda x: integrate.quad(lambda y: gauss((x, y)), -np.inf, np.inf)[0]  # unnecessarily expensive, but reliable
+h = lambda y: integrate.quad(lambda x: gauss((x, y)), -np.inf, np.inf)[0]
+
+
+def f_x_y(x):
+    result = gauss(x) / h(x[1])
+    assert np.size(result) == 1
+    return result
+
+
+def f_y_x(x):
+    return gauss(x) / g(x[0])
+
+
+def generate_3D_plot_data(func):
     """Return (X,Y,Z) matrices. Rotates x,y by θ."""
     # Generate mesh for b)
     x = np.linspace(4 - plot_frame, 4 + plot_frame, plot_accuracy)
@@ -41,12 +57,14 @@ def generate_3D_plot_data():
     Z = np.zeros((x.size, y.size))
     for i, f_x in enumerate(x):
         for j, f_y in enumerate(y):
-            Z[j, i] = gauss((f_x, f_y))  # still strange; why do I have to switch j and i ?
+            Z[j, i] = func((f_x, f_y))  # still strange; why do I have to switch j and i ?
 
     return (X, Y, Z)
 
 
-plot_data_cov = generate_3D_plot_data()
+plot_data_f_x_y = generate_3D_plot_data(f_x_y)
+plot_data_f_y_x = generate_3D_plot_data(f_y_x)
+plot_data_cov = generate_3D_plot_data(gauss)
 
 # Draw a contour plot of the whole gaussian
 c = plt.contourf(*plot_data_cov, cmap=cm.hot)
@@ -88,7 +106,7 @@ fig = plt.figure()  # seems like some things can't be done without OO
 ax = fig.add_subplot(1, 1, 1)
 
 # plot ellipses again
-plot_data_new = generate_3D_plot_data()
+plot_data_new = generate_3D_plot_data(gauss)
 plt.contour(*plot_data_new, [prefactor / np.sqrt(np.e)], colors="m")
 plt.plot(0, 0, label="$e^{-0.5}$-Ellipse", color="m")  # cheat a legend for the contour plot
 
@@ -105,6 +123,7 @@ x_cov = (μ[0], μ[0] + 5 * np.cos(root))
 y_cov = (μ[1] + offset, μ[1] + 5 * np.sin(root) + offset)
 
 
+# Draw lines
 line_1 = Line2D(x_cov, y_cov, linewidth=1, linestyle="-", color="black")
 line_2 = Line2D(x_new, y_new, linewidth=1, linestyle="-", color="black")
 
@@ -115,3 +134,29 @@ ax.text(x_new[0] + 1.5, y_new[0] + 0.1, r'$\theta$', color="black")
 plt.gca().set_aspect('equal')
 plt.legend(loc='best')
 plt.savefig("fig/4e.pdf")
+
+
+plt.clf()
+
+
+# Draw a contour plot of conditional prop xy
+c = plt.contourf(*plot_data_f_x_y, cmap=cm.hot)
+plt.colorbar(c)
+
+# b) Draw a contour where Z is at e^-0.5, i.e. the ellipsis
+plt.contour(*plot_data_f_x_y, [prefactor / np.sqrt(np.e)], colors="g")
+
+plt.gca().set_aspect('equal')
+plt.legend(loc='best')
+plt.savefig("fig/4f-1.pdf")
+
+plt.clf()
+
+
+# Draw a contour plot of conditional prop yx
+c = plt.contourf(*plot_data_f_y_x, cmap=cm.hot)
+plt.colorbar(c)
+
+plt.gca().set_aspect('equal')
+plt.legend(loc='best')
+plt.savefig("fig/4f-2.pdf")

@@ -19,7 +19,23 @@ M =
 }
 $$
 mit $\theta = 20^o$.
+
+Die neuen Standardabweichungen sind
 \begin{align}
-    σ_x' &= 3.71213295653
-    σ_y' &= 0.848568743871
+    \sigma_{x^,} &= 3.71 \\
+    \sigma_{y^,} &= 0.849
 \end{align}
+.
+
+
+### e)
+Die Ellipsen bilden natürlich den oben stehenden Winkel $\theta$. Die Hauptachsen von der alten und der neuen Ellipse sind jeweils gleich lang (Drehungen sind unitär), nämlich $\sigma_{x^,} /2 = 1.86$ und $\sigma_{y^,} /2 = 0.424$.
+
+![Beide Ellipsen im Vergleich.](fig/4e.pdf)
+
+### f)
+Die bedingten Wahrscheinlichkeiten sind in den Plots eingezeichnet.
+
+![$f(x | y)$](fig/4f-1.pdf)
+
+![$f(y | x)$](fig/4f-2.pdf)
