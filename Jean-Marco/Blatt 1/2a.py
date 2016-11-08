@@ -3,7 +3,7 @@ import numpy as np
 a,b = np.genfromtxt("Groesse_Gewicht.txt", unpack=True)
 canvas = ROOT.TCanvas("canvas", "Aufgabe 2a - Gewichte")
 canvas.Divide(3,2)
-
+print(np.std(b))
 canvas.cd(1)
 h = ROOT.TH1D("Gewicht", "Gewicht, bins=5", 5, min(a), max(a))
 for tmp in a:
