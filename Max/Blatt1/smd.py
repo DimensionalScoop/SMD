@@ -42,3 +42,15 @@ def gauss_multivariate(x, Σ, μ):
     result = N * np.exp(exp)
     assert np.size(result) == 1
     return result
+
+
+def rot_matrix_2D(θ):
+    """Return rotation matrix for angle θ"""
+    rot = ((np.cos(θ), -np.sin(θ)), (np.sin(θ), np.cos(θ)))
+    return np.array(rot)
+
+
+def rotate(M, θ):
+    """Rotate matrix M by θ"""
+    rot = rot_matrix_2D(θ)
+    return np.dot(np.dot(linalg.inv(np.array(rot)), M), np.array(rot))
