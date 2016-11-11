@@ -1,0 +1,1 @@
+/home/elayn/SMD/Jean-Marco/Blatt 1/aufg1.md

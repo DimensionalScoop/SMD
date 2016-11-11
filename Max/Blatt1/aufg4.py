@@ -128,8 +128,10 @@ line_1 = Line2D(x_cov, y_cov, linewidth=1, linestyle="-", color="black")
 line_2 = Line2D(x_new, y_new, linewidth=1, linestyle="-", color="black")
 
 ax.add_line(line_1)
-ax.add_line(line_2)
+# ax.add_line(line_2)
 ax.text(x_new[0] + 1.5, y_new[0] + 0.1, r'$\theta$', color="black")
+
+plt.errorbar(*μ, xerr=σ_new[0], yerr=σ_new[1], fmt='red', label=r'Hauptachsen')
 
 plt.gca().set_aspect('equal')
 plt.legend(loc='best')
