@@ -1,7 +1,10 @@
+import ggplot as gg
+import pandas as pd
 import numpy as np
-import pyximport
-pyximport.install()
-import aufg2_cython
+import matplotlib
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
+matplotlib.style.use('ggplot')
 
 
 def lin_con(a, b, m, lenght, initial_value=0):
@@ -12,7 +15,39 @@ def lin_con(a, b, m, lenght, initial_value=0):
     for x in range(1, lenght):
         return_value[x] = (a * return_value[x - 1] + b) % m
 
-    return return_value / m
+    return np.array(return_value) / m
+
 
 # a)
-test_array = lin_con(1601, 3456, 10000, 100000000)
+samples = 10000
+data = pd.DataFrame()
+for i in range(0, 10000, 2786):
+    data["Anfangswert " + str(i)] = lin_con(1601, 3456, 10000, samples, initial_value=i)
+
+
+# b)
+plt.rcParams['figure.figsize'] = (8.27, 11.69)  # Din A4
+data.hist(bins=30)
+plt.savefig("fig/2a.pdf", dpi=300)
+plt.clf()
+
+# c)
+plt.rcParams['figure.figsize'] = (11.69, 8.27)  # Din A4
+rnd = data["Anfangswert 2786"]
+data = pd.DataFrame(columns=list("xyz"))
+
+x = rnd[0:-1:3]
+y = rnd[1::3]
+z = rnd[2::3]
+
+
+fig = plt.figure()
+ax = fig.add_subplot(111, projection='3d')
+ax.plot(x, z, 'r+', zdir='y', zs=1.5)
+ax.plot(y, z, 'g+', zdir='x', zs=-0.5)
+ax.plot(x, y, 'k+', zdir='z', zs=-0.5)
+ax.scatter(x, y, z)
+ax.set_xlim([-0.5, 1.5])
+ax.set_ylim([-0.5, 1.5])
+ax.set_zlim([-0.5, 1.5])
+plt.savefig("fig/2c.pdf", dpi=300)
