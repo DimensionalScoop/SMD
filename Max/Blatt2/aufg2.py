@@ -23,7 +23,7 @@ data_c = pd.DataFrame.from_csv("data/lin_con_big.csv")
 
 def histogram_plot(random_data, filename):
     smd.set_plot_size(smd.din_A4_portrait)
-    random_data.hist(bins=30)
+    random_data.hist(bins=50)
     plt.savefig(filename, dpi=300)
 
 smd.add_process(lambda: histogram_plot(data_a, "fig/2a.pdf"))
@@ -48,7 +48,7 @@ def scatter_plot(random_data, filename):
     ax.plot(x, z, 'r+', zdir='y', zs=1.5)
     ax.plot(y, z, 'g+', zdir='x', zs=-0.5)
     ax.plot(x, y, 'k+', zdir='z', zs=-0.5)
-    ax.scatter(x, y, z)
+    ax.scatter(x, y, z, s=5, lw=0)
     ax.set_xlim([-0.5, 1.5])
     ax.set_ylim([-0.5, 1.5])
     ax.set_zlim([-0.5, 1.5])

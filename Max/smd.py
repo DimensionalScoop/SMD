@@ -5,7 +5,8 @@ import matplotlib.pyplot as plt
 import scipy.integrate as integrate
 import math
 from matplotlib.patches import Arc
-from multiprocessing import Process
+from multiprocessing import Process, Queue, Pool
+from operator import itemgetter
 
 
 din_A4_landscape = (11.69, 8.27)
@@ -96,3 +97,21 @@ def run_all_non_parallel():
     for f in __processes_to_run_parallel:
         f()
     __processes_to_run_parallel = []
+
+
+# XXX: Doesn't do lambdas
+# XXX: Some values of len(data) don't work
+def parallel_slice(function, data):
+    """Requires a function that requests an array and returns an array, like numpy.sin(data)=output. parallel_slice behaves like 'function', but internally 'data' is sliced into multiple arrays and is run thru 'function' in multiple threads."""
+
+    cores = 4
+    print("Using", cores, "cores.")
+    slices = np.array_split(list(data), cores)
+
+    pool = Pool(cores)
+    result = pool.map(function, slices)
+    return np.append([], result)
+
+
+if __name__ == '__main__':
+    print(parallel_slice(np.sin, [1, 2, 3, 4, 5, 6, 7, 8]))
