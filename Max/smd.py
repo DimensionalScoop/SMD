@@ -105,7 +105,7 @@ def parallel_slice(function, data):
     """Requires a function that requests an array and returns an array, like numpy.sin(data)=output. parallel_slice behaves like 'function', but internally 'data' is sliced into multiple arrays and is run thru 'function' in multiple threads."""
 
     cores = 4
-    print("Using", cores, "cores.")
+    #print("Using", cores, "cores.")
     slices = np.array_split(list(data), cores)
 
     pool = Pool(cores)

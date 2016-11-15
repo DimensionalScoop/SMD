@@ -1,5 +1,6 @@
 print("Loading imports...")
 import pandas as pd
+import numpy as np
 import smd
 import os
 import matplotlib
@@ -56,7 +57,7 @@ def scatter_plot(random_data, filename):
 
 
 smd.add_process(lambda: scatter_plot(data_a["Anfangswert 2786"], "fig/2c.pdf"))
-
+0.5
 
 # e)
 smd.add_process(lambda: histogram_plot(data_b, "fig/2e-1.pdf"))
@@ -64,7 +65,7 @@ smd.add_process(lambda: scatter_plot(data_b["Anfangswert 0"], "fig/2e-2.pdf"))
 
 
 # f)
-smd.add_process(lambda: print("# of generated 0.5s:\n", data_c[data_c == 0.5].count().value_counts()))
+smd.add_process(lambda: print("# of generated 0.5s:\n", np.count_nonzero(data_c.values == 0.5)))
 
 print("Running plots...")
 smd.run_all()

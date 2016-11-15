@@ -15,14 +15,14 @@ def f(x, a):
 cov = [(0.2**2, -0.064 / 2), (-0.064 / 2, 0.2**2)]
 data = pd.DataFrame(columns=["x", "Analytical", "Monte Carlo"])
 
-data['x'] = append([-3, 0, 3], linspace(-10, 10, 997))  # for c)
+data['x'] = array(sorted(append([-3, 0, 3], linspace(-10, 10, 997))))  # for c)
 
 # Generate analytical data via uncertainties
 a_analytical = correlated_values((1, 1), cov)
 data['Analytical'] = unp.std_devs(f(data['x'], a_analytical))
 
 # Monte Carlo
-samples = 10000
+samples = 100000
 a_mc = random.multivariate_normal((1, 1), cov, samples)
 # a plot visualizing the 2d normal distribution
 plot = gg.qplot(a_mc[:, 0], a_mc[:, 1]) + gg.xlab('a0') + gg.ylab('a1')
