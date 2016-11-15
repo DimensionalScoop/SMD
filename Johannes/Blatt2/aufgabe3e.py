@@ -97,5 +97,5 @@ plt.savefig('3e.pdf')
 plot1 = qplot(x=bin_mid_positions, y=bin_heights) + ggtitle("Der Peak, der keiner war")
 plot2 = qplot(a) + ggtitle("Unsere Verteilung") + geom_histogram(binwidth=1 / 50)
 
-plot2.save("3e.pdf")
+plot1.save("3e.pdf")
 plot2.save("3e3.pdf")
