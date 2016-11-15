@@ -30,6 +30,8 @@ def transform_e(bins, n, len):
         len: How many random numbers do you need?
      """
     a5=[]
+    BINS = np.linspace(0. , 1., 50)
+    intervall = abs(BINS[2]-BINS[1])/2
     randomgen = ROOT.TRandom(34123) # Zufallsgenerator mit random seed
     for i in range(len):
         a5.append( (randomgen.Rndm(), randomgen.Rndm() ))
@@ -85,7 +87,8 @@ plt.clf()
 data = np.load("empirisches_histogramm.npy")
 n, bins, patches = plt.hist(data['bin_mid'], bins=np.linspace(0., 1., 50), weights=data['hist'])
 # n = Binhöhe, bins = bingrenzen
-
+print(data['hist'])
+print(n)
 plt.savefig('3e_1.pdf')
 
 
