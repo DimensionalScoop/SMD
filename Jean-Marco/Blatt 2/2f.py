@@ -29,6 +29,8 @@ for i in range(10000):
     if tmp==0.5:
         count=count+1
 
+print(a1)
+
 print("Vorkommen bei passenden Startwert:")
 print(count)
 print("Passende Startwerte:")
