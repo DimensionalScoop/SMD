@@ -4,6 +4,7 @@ import matplotlib as mpl
 from mpl_toolkits.mplot3d import Axes3D
 import matplotlib.pyplot as plt
 from ggplot import *
+import pandas as pd
 
 
 # e)
@@ -94,8 +95,14 @@ canvas.Print("3e3.pdf")
 
 plt.savefig('3e.pdf')
 
-plot1 = qplot(x=bin_mid_positions, y=bin_heights) + ggtitle("Der Peak, der keiner war")
-plot2 = qplot(a) + ggtitle("Unsere Verteilung") + geom_histogram(binwidth=1 / 50)
 
-plot1.save("3e.pdf")
+histo = []
+
+for pos, height in zip(bin_mid_positions, bin_heights):
+    histo.extend([pos] * int(height))
+
+plot1 = qplot(histo) + ggtitle("Der Peak, der keiner war") + geom_histogram(binwidth=1 / 50)
+plot1.save("3e-orginale-daten.pdf")
+
+plot2 = qplot(a) + ggtitle("Unsere Verteilung") + geom_histogram(binwidth=1 / 50)
 plot2.save("3e3.pdf")
