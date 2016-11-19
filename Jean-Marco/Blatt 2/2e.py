@@ -29,6 +29,7 @@ h1 = ROOT.TH1D("zufall1", "Zufallszahlen0", 30, min(a1), max(a1))
 for tmp in a1:
     h1.Fill(tmp)
 h1.Draw()
+plt.savefig('2e_1.pdf')
 
 #2d
 
