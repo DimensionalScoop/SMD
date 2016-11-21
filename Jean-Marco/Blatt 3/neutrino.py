@@ -53,13 +53,15 @@ for i in range(10**5):
     fill_me[0] = transform(zufall.Rndm())
     Signal_MC.Fill()
 
-plt.hist(a1, bins=range(0,50) ,alpha=0.8)
+plt.hist(np.log(a1), bins=50 ,alpha=0.8)
 plt.title(r"Fancy Neutrinosignale")
 plt.yscale('log')
-plt.xscale('log')
-plt.xlabel(r'$E \,/\, \mathrm{TeV}$')
+#plt.xscale('log')
+plt.xlabel(r'$log(E) \,/\, \mathrm{TeV}$')
 plt.savefig('1a.pdf')
 plt.clf()
+
+
 
 # Aufgabe b
 
@@ -76,11 +78,11 @@ for i in a1:
         fill_me2[0] = i
         Signal_MC_Akzeptanz.Fill()
 
-plt.hist(a2, bins=range(0,50) ,alpha=0.8)
+plt.hist(np.log(a2), bins=50 ,alpha=0.8)
 plt.title(r"Fancy Neutrinosignale mit Detektorempfindlichkeit")
 plt.yscale('log')
-plt.xscale('log')
-plt.xlabel(r'$E \,/\, \mathrm{TeV}$')
+#plt.xscale('log')
+plt.xlabel(r'$log(E) \,/\, \mathrm{TeV}$')
 plt.savefig('1b.pdf')
 plt.clf()
 
@@ -89,8 +91,8 @@ print("Vorhandene Signale nach Detektorempfindlichkeit:", len(a2))
 
 # Aufgabe c)
 
-fill_me3 = np.zeros(1, dtype=float) # Würde hier gerne int machen, aber Root scheint den Datentyp int nicht zu verstehen (?)
-Signal_MC_Akzeptanz.Branch('AnzahlHits', fill_me3, 'Hits/D')
+fill_me3 = np.zeros(1, dtype=int) # Würde hier gerne int machen, aber Root scheint den Datentyp int nicht zu verstehen (?)
+Signal_MC_Akzeptanz.Branch('AnzahlHits', fill_me3, 'Hits/I')
 
 polargen = Polar_Normal(71231)
 a3 = []
@@ -137,7 +139,7 @@ for i in a3:
     Signal_MC_Akzeptanz.Fill()
 
 #antplot
-plt.plot(a4_x, a4_y, 'ko', markersize=2)
+plt.plot(a4_x, a4_y, 'ko', markersize=1)
 plt.title(r"Ortsverteilung")
 plt.xlabel("x")
 plt.ylabel("y")
@@ -145,7 +147,7 @@ plt.savefig('1d_ant.pdf')
 plt.clf()
 
 #macht diese Darstellung Sinn?
-plt.hist2d(a4_x, a4_y, bins=50)
+plt.hist2d(a4_x, a4_y, bins=100)
 plt.colorbar()
 plt.title("Ortsverteilung")
 plt.xlabel("x")
@@ -237,7 +239,7 @@ plt.savefig('1e_y.pdf')
 plt.clf()
 
 #macht diese Darstellung Sinn?
-plt.hist2d(x1, y1, bins=50)
+plt.hist2d(x1, y1, bins=100)
 plt.colorbar()
 plt.title("Ortsverteilung Untergrund")
 plt.xlabel("x")
