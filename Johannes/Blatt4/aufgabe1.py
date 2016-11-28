@@ -76,7 +76,7 @@ plt.xlabel(r'$x$')
 plt.ylabel(r'$y$')
 plt.title(r'Populations of $P_0$ and $P_1$.')
 plt.legend(loc='best')
-plt.savefig('1b.pdf')
+plt.savefig('fig/1b.pdf')
 
 plt.clf()
 
@@ -121,6 +121,31 @@ p1_cor_stich = a[1,0]/(np.sqrt(a[0,0]*a[1,1]))
 p2_cor_stich = b[1,0]/(np.sqrt(b[0,0]*b[1,1]))
 p_ges_cor_stich = c[1,0]/(np.sqrt(c[0,0]*c[1,1]))
 
+
+## printing
+print("population0:")
+print("mean_x = ", x1_mean_stich)
+print("mean_y = ", y1_mean_stich)
+print("var_x = ", x1_var_stich)
+print("var_y = ", y1_var_stich)
+print("covar = ", p1_covar_stich)
+print("cor = ", p1_cor_stich)
+
+print("population1:")
+print("mean_x = ", x2_mean_stich)
+print("mean_y = ", y2_mean_stich)
+print("var_x = ", x2_var_stich)
+print("var_y = ", y2_var_stich)
+print("covar = ", p2_covar_stich)
+print("cor = ", p2_cor_stich)
+
+print("both populations:")
+print("mean_x = ", x_ges_mean_stich)
+print("mean_y = ", y_ges_mean_stich)
+print("var_x = ", x_ges_var_stich)
+print("var_y = ", y_ges_var_stich)
+print("covar = ", p_ges_covar_stich)
+print("cor = ", p_ges_cor_stich)
 
 
 #d)
