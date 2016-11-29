@@ -1,0 +1,3 @@
+Diesen Ordner einfach kopieren und in 'BlattXX' umbenennen, dann relevante Dateien als Link in den Ordner legen.
+
+Das Makefile generiert automatisch ein pdf aus allen Markdown-Dateien im Ordner und zipt alles, was kein zip,md oder tex ist. Links werden aufgelößt (-h).
