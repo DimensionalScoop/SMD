@@ -1,4 +1,6 @@
-#Blatt4
+# Blatt 4
+
+**Gruppe Blau, Kollek, Alameddine, Pernklau**
 
 ##Aufgabe1
 
