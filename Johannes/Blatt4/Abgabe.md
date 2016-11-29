@@ -4,7 +4,7 @@
 
 ###a)
 
-Siehe Anhang.
+Vergleiche handschriftliche Abgabe.
 
 ###b)
 
@@ -18,30 +18,30 @@ Die Kenngrößen der Population $P_0$ lauten:
 
 $P_0$:
 \begin{align*}
-  x_{\text{mean}} &= 2.9788 \\
-  y_{\text{mean}} &= 3.0498 \\
-  \text{Var}[x]   &= 21.4937 \\
-  \text{Var}[y]   &= 6.1196 \\
-  cov(x,y)        &= 8.0195 \\
-  \rho            &= 0.6992 \\
+  x_{\text{mean}} &=  0.0400 \\
+  y_{\text{mean}} &=  3.0145 \\
+  \text{Var}[x]   &=12.0826 \\
+  \text{Var}[y]   &=6.6144 \\
+  cov(x,y)        &= 8.0453 \\
+  \rho            &= 0.8999 \\
 \end{align*}
 $P_1$:
 \begin{align*}
-  x_{\text{mean}} &= 6.0115 \\
-  y_{\text{mean}} &= 3.1208 \\
-  \text{Var}[x]   &= 12.3923 \\
-  \text{Var}[y]   &= 5.464 \\
-  cov(x,y)        &= 7.4252 \\
+  x_{\text{mean}} &= 6.0247 \\
+  y_{\text{mean}} &= 3.1344 \\
+  \text{Var}[x]   &= 11.9228 \\
+  \text{Var}[y]   &= 5.2991 \\
+  cov(x,y)        &= 7.1731 \\
   \rho            &= 0.9024 \\
 \end{align*}
 $P_{\text{ges}}$:
 \begin{align*}
-  x_{\text{mean}} &= 2.9788 \\
-  y_{\text{mean}} &= 3.0498 \\
-  \text{Var}[x]   &= 21.4937 \\
-  \text{Var}[y]   &= 6.1196 \\
-  cov(x,y)        &= 8.0195 \\
-  \rho            &= 0.6992 \\
+  x_{\text{mean}} &= 3.0323 \\
+  y_{\text{mean}} &= 3.0744 \\
+  \text{Var}[x]   &= 20.9568 \\
+  \text{Var}[y]   &= 5.9600 \\
+  cov(x,y)        &= 7.7882 \\
+  \rho            &= 0.6969 \\
 \end{align*}
 
 ###d)
@@ -76,26 +76,3 @@ Darstellungen der Effizienz und Reinheit.
 
 ![Reinheit und Effizienz im Bezug auf $g_3$](fig/2c3.pdf)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-##Aufgabe3
-
-Siehe Anhang.
-
-##Aufgabe4
-
-Siehe Anhang.

@@ -1,0 +1,1 @@
+/home/elayn/Projects/Uni/Semester 5/SMD/Johannes/Blatt4/aufgabe2.py
