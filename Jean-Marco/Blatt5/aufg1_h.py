@@ -13,13 +13,13 @@ def TreeToArray(tree, branchname, datatype=float):
     for i in range(nentries):
         tree.GetEntry(i)
         x[i] = x_val
-    return x   
+    return x
 
 
 
 #Daten Einlesen
 root_file = ROOT.TFile("zwei_populationen.root")
-tree0 = root_file.Get("P_0_10000")
+tree0 = root_file.Get("P_0_1000")
 tree1 = root_file.Get("P_1")
 
 x0 = TreeToArray(tree0, "x")
@@ -62,7 +62,7 @@ sw = s0+s1
 sw_inv = LA.inv(sw)
 lambd = np.dot(sw_inv, np.array([x0_mean-x1_mean,y0_mean-y1_mean]))
 l_norm = lambd / LA.norm(lambd)
-print(l_norm)
+print("Lambda:", l_norm)
 
 #Aufgabe d)
 
@@ -74,9 +74,60 @@ project_p1 = []
 for i in range(len(x1)):
     project_p1.append( np.dot( (x1[i],y1[i]), l_norm))
 
-plt.hist(project_p0, alpha=0.8, label=r"Signal")
-plt.hist(project_p1, alpha=0.8, label=r"Untergrund")
+plt.hist(project_p0, bins=50, alpha=0.8, label=r"Signal")
+plt.hist(project_p1, bins=50, alpha=0.8, label=r"Untergrund")
+plt.xlabel(r'$\lambda_{Proj}$')
 plt.title(r"Fischer Diskiminanzanalyse")
 plt.legend(loc='best')
-plt.savefig('fig/1d.pdf')
+plt.savefig('figh/1d.pdf')
+plt.clf()
 
+#Aufgabe e) / f)
+max_lim = np.max([np.max(project_p0), np.max(project_p1)])
+min_lim = np.min([np.min(project_p0), np.min(project_p1)])
+
+tp = []
+fn = []
+fp = []
+tn = []
+signal = []
+untergrund = []
+lam_index = []
+for i in np.linspace(min_lim, max_lim-0.01, 100):
+    tp.append(sum(project_p0>i))
+    fn.append(sum(project_p0<i))
+    fp.append(sum(project_p1>i))
+    tn.append(sum(project_p1<i))
+    lam_index.append(i)
+
+tp = np.array(tp)
+fn = np.array(fn)
+fp = np.array(fp)
+tn = np.array(tn)
+lam_index = np.array(lam_index)
+
+plt.plot(lam_index, tp/(tp+fn), label=r'Effizienz')
+plt.plot(lam_index, tp/(tp+fp), label=r'Reinheit')
+plt.xlabel(r'$\lambda_{cut}$')
+plt.legend()
+plt.legend(loc='best')
+plt.savefig('figh/1e.pdf')
+plt.clf()
+
+
+#Aufgabe 1f)
+plt.plot(lam_index, (tp)/(fp), label=r'$\frac{S}{B}$')
+plt.xlabel(r'$\lambda_{cut}$')
+plt.legend()
+plt.legend(loc='best')
+plt.savefig('figh/1f.pdf')
+plt.clf()
+
+#Aufgabe 1g)
+plt.plot(lam_index, (tp)/(np.sqrt(tp+fp)), label=r'$\frac{S}{\sqrt{S + B}}$')
+plt.xlabel(r'$\lambda_{cut}$')
+plt.legend()
+plt.legend(loc='best')
+plt.savefig('figh/1g.pdf')
+plt.clf()
+print("Maximale Signifikanz für", lam_index[np.argmax((tp)/(np.sqrt(tp+fp)))])
