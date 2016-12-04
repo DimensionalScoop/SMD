@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.3.000">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.3.000" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="productivity:execute_process" compatibility="7.3.000" expanded="true" height="68" name="Execute 5.3.a load and clean up Ice Cube data" width="90" x="179" y="34">
+        <parameter key="process_location" value="//Local Repository/processes/5.3.a load and clean up Ice Cube data"/>
+        <parameter key="use_input" value="true"/>
+        <parameter key="store_output" value="false"/>
+        <parameter key="propagate_metadata_recursively" value="true"/>
+        <parameter key="cache_process" value="true"/>
+        <list key="macros"/>
+        <parameter key="fail_for_unknown_macros" value="true"/>
+      </operator>
+      <operator activated="true" class="featselext:mrmr_feature_selection" compatibility="1.1.004" expanded="true" height="82" name="MRMR-FS" width="90" x="380" y="34">
+        <parameter key="normalize_weights" value="false"/>
+        <parameter key="sort_weights" value="true"/>
+        <parameter key="sort_direction" value="ascending"/>
+        <parameter key="sets_or_ranks" value="sets"/>
+        <parameter key="calculate full ranking" value="true"/>
+        <parameter key="k" value="30"/>
+        <parameter key="relevance_redundancy_relation" value="quotient"/>
+        <parameter key="use_ensemble_method" value="none"/>
+        <parameter key="ensemble_size" value="10"/>
+        <parameter key="logging" value="false"/>
+      </operator>
+      <operator activated="true" class="select_by_weights" compatibility="7.3.000" expanded="true" height="103" name="Select by Weights" width="90" x="581" y="34">
+        <parameter key="weight_relation" value="greater equals"/>
+        <parameter key="weight" value="1.0"/>
+        <parameter key="k" value="10"/>
+        <parameter key="p" value="0.5"/>
+        <parameter key="deselect_unknown" value="true"/>
+        <parameter key="use_absolute_weights" value="true"/>
+      </operator>
+      <connect from_op="Execute 5.3.a load and clean up Ice Cube data" from_port="result 1" to_op="MRMR-FS" to_port="example set"/>
+      <connect from_op="MRMR-FS" from_port="weights" to_op="Select by Weights" to_port="weights"/>
+      <connect from_op="MRMR-FS" from_port="example set" to_op="Select by Weights" to_port="example set input"/>
+      <connect from_op="Select by Weights" from_port="example set output" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>
