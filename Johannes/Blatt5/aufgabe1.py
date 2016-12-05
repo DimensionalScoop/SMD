@@ -173,7 +173,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     # e)
 
     ## calculating precision and recall of this projection
-    x = np.linspace(-15,10,10000)
+    x = np.linspace(-5,4,10000)
     plt.plot(x, recall(x,p0_proj), 'r-', label=r'recall')
     plt.plot(x, precision(x,p0_proj,p1_proj), 'b-', label=r'precision')
     plt.xlabel(r'$x_{cut}$')
@@ -235,8 +235,12 @@ sw_inv_sb = sw_inv*sb
 ## calculating eigenvectors
 w, v = np.linalg.eig(sw_inv_sb)
 
+#lambd = np.dot(sw_inv, np.array([x0_mean-x1_mean,y0_mean-y1_mean]))
+v = np.dot(sw_inv, np.array([p0_mean[0]-p1_mean[0],p0_mean[1]-p1_mean[1]]))
+
+
 ## choosing the eigenvector with the highest eigenvalue
-v = v[0]
+#v = v[0]
 lambda_fischer = np.copy(v)
 
 ## normalizing
