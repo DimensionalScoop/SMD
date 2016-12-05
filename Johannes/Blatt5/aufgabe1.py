@@ -149,14 +149,14 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     plt.title(r'Populations of $P_0$ and $P_1$, and projectories.'+k)
     plt.legend(loc='best')
 
-    plt.savefig('fig/'+plot1, format='pdf')
+    plt.savefig('fig/'+plot1)
 
 
     plt.plot(p0_proj, g1(p0_proj,v), 'bo', markersize=1)
     plt.plot(p1_proj, g1(p1_proj,v), 'ro', markersize=1)
 
 
-    plt.savefig('fig/'+plot2, format='pdf')
+    plt.savefig('fig/'+plot2)
     plt.clf()
     #########################################################
 
@@ -166,7 +166,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     plt.xlabel('projection')
     plt.title(r'Projection of $P_0$ and $P_1$.'+k)
     plt.legend()
-    plt.savefig('fig/'+plot3, format='pdf')
+    plt.savefig('fig/'+plot3)
     plt.clf()
 
 
@@ -179,7 +179,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     plt.xlabel(r'$x_{cut}$')
     plt.title(r'Recall and precision of $g_1(x_{cut}).$'+k)
     plt.legend()
-    plt.savefig('fig/'+plot4, format='pdf')
+    plt.savefig('fig/'+plot4)
     plt.clf()
 
     # g)
@@ -193,7 +193,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     plt.xlabel(r'$x_{cut}$')
     plt.title(r'Proportion'+k)
     plt.legend()
-    plt.savefig('fig/'+plot5, format='pdf')
+    plt.savefig('fig/'+plot5)
     plt.clf()
 
     ## plotting significance and gaining max
@@ -203,7 +203,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     plt.xlabel(r'$x_{cut}$')
     plt.title(r'Significance'+k)
     plt.legend()
-    plt.savefig('fig/'+plot6, format='pdf')
+    plt.savefig('fig/'+plot6)
     plt.clf()
     return
 
@@ -255,8 +255,8 @@ print("e_lambda = ", v)
 
 # d)
 print("Data for P_0_10000:")
-d_bis_g(v,x1, x2, y1, y2, 'test1','test2','1d','1e','1f','1g',' (P_0_10000)')
+d_bis_g(v,x1, x2, y1, y2, 'test1.pdf','test2.pdf','1d.pdf','1e.pdf','1f.pdf','1g.pdf',' (P_0_10000)')
 
 # h)
 print("Data for P_0_1000:")
-d_bis_g(v,x3, x2, y3, y2, 'test1_h','test2_h','1h_d','1h_e','1h_f','1h_g',' (P_0_1000)')
+d_bis_g(v,x3, x2, y3, y2, 'test1_h.pdf','test2_h.pdf','1h_d.pdf','1h_e.pdf','1h_f.pdf','1h_g.pdf',' (P_0_1000)')
