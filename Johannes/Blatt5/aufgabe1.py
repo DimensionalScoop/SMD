@@ -173,7 +173,7 @@ def d_bis_g(v, x1, x2, y1, y2, plot1, plot2, plot3, plot4, plot5, plot6,k):
     # e)
 
     ## calculating precision and recall of this projection
-    x = np.linspace(-5,4,10000)
+    x = np.linspace(-4,5,10000)
     plt.plot(x, recall(x,p0_proj), 'r-', label=r'recall')
     plt.plot(x, precision(x,p0_proj,p1_proj), 'b-', label=r'precision')
     plt.xlabel(r'$x_{cut}$')
@@ -251,7 +251,7 @@ print("lambda = ",a)
 print("e_lambda = ", v)
 
 ## p0 should be right of p1 (cosmetics)
-v = -v
+#v = -v
 
 # d)
 print("Data for P_0_10000:")
