@@ -216,31 +216,33 @@ p1 = ordne(x2,y2)
 p0_mean = np.array([np.mean(x1),np.mean(y1)])
 p1_mean = np.array([np.mean(x2),np.mean(y2)])
 
+print("means:")
+print("p0_mean = ",p0_mean)
+print("p1_mean = ",p1_mean)
+
 # b)
 
 ## calculating matrices
 s0_streu = streu(p0,p0_mean)
 s1_streu = streu(p1,p1_mean)
+print("streu:")
+print("s0_streu = ",s0_streu)
+print("s1_streu = ",s1_streu)
 ## calculating sw
 sw = s0_streu + s1_streu
+print("s_streu_ges = ",sw)
 ## inverting sw
 sw_inv = np.linalg.inv(sw)
 ## calculating sb
 sb = np.array([(p0_mean-p1_mean)*(p0_mean-p1_mean)[0],(p0_mean-p1_mean)*(p0_mean-p1_mean)[1]])
-## matix needed for calculation of eigenvectors
+## matix needed for calculation of fischervector
 sw_inv_sb = sw_inv*sb
 
 # c)
 
-## calculating eigenvectors
-w, v = np.linalg.eig(sw_inv_sb)
-
-#lambd = np.dot(sw_inv, np.array([x0_mean-x1_mean,y0_mean-y1_mean]))
+## calculating fischervector
 v = np.dot(sw_inv, np.array([p0_mean[0]-p1_mean[0],p0_mean[1]-p1_mean[1]]))
 
-
-## choosing the eigenvector with the highest eigenvalue
-#v = v[0]
 lambda_fischer = np.copy(v)
 
 ## normalizing

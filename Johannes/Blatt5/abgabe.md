@@ -4,7 +4,7 @@
 
 ###a)-c)
 
-Siehe Programmcode. Die Kenngrößen der Fischer-Diskriminante lauten
+Siehe Programmcode bzw Terminal. Die Kenngrößen der Fischer-Diskriminante lauten
 \begin{align*}
   \lambda &= 0.000203317210248,\\
   \vec{e}_{\vec{\lambda}}&=\left(\begin{array}{c}-0.61952714\\0.78497524\end{array}\right).
@@ -58,6 +58,6 @@ maximal.
 ![Die Signifikanz (P_0_1000)](fig/1h_g.pdf)
 Der Wert der Signifikanz wird im Intervall
 \begin{align*}
-  \lambda_{\text{cut}} = [1.09180918,109630963]
+  \lambda_{\text{cut}} = [1.09180918,1.09630963]
 \end{align*}
 maximal.
