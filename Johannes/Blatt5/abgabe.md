@@ -1,5 +1,7 @@
 #Blatt 5
 
+**Gruppe Blau, Kollek, Alameddine, Pernklau**
+
 ## Aufgabe 1
 
 ###a)-c)
