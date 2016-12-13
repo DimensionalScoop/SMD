@@ -1,0 +1,12 @@
+import numpy as np
+
+
+
+P0 = np.load('P0.npy')
+P1 = np.load('P1.npy')
+Pges = np.append(P0, P1, axis=-1)
+label = np.append(np.zeros(np.shape(P0)[1]), np.ones(np.shape(P1)[1]))
+G = np.random.randn(2,2)
+b = np.random.randn(2)
+print(G)
+print(b)
