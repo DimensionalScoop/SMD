@@ -4,6 +4,8 @@ import smd
 import pyximport
 pyximport.install()
 import distance
+import matplotlib.pyplot as plt
+from mpl_toolkits.mplot3d import Axes3D
 
 
 def euclidean(a, b):
@@ -88,6 +90,7 @@ def sample_vector(size, data, start=0):
     stop = start + size
     return np.array((data[0][start:stop], data[1][start:stop], data[2][start:stop])).T
 
+
 training_size = 5000  # 5000x signal + 5000x background
 training_data = np.vstack((sample_vector(training_size, background), sample_vector(training_size, signal)))
 # labels are 1 for signal and -1 for background
@@ -106,20 +109,31 @@ test_labels = np.hstack((-np.ones(test_background_size), np.ones(test_signal_siz
 def kNN_sliced(unknown):
     return np.array(list(kNN(training_data, training_labels, unknown, 10)))
 
+
+def analyze(calculated_lables):
+    # labels are 1 for signal and -1 for background
+    result = test_labels + calculated_lables * 2
+    bincount = count_occurences(result)
+    assert len(bincount.keys()) <= 4
+
+    true_positive = bincount[3]
+    true_negative = bincount[-3]
+    false_positive = bincount[1]
+    false_negative = bincount[-1]
+
+    print("Reinheit:", true_positive / (true_positive + false_positive))
+    print("Effizienz:", true_positive / (true_positive + false_negative))
+    print("Genauigkeit:", (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative))
+    print("Signifikanz:", (true_positive + false_positive) / np.sqrt(true_positive + true_negative + false_positive + false_negative))
+
 print("Calculating kNN, this may take <30s")
 calculated_lables = smd.parallel_slice(kNN_sliced, test_data)
+analyze(calculated_lables)
 
-# labels are 1 for signal and -1 for background
-result = test_labels + calculated_lables * 2
-bincount = count_occurences(result)
-assert len(bincount.keys()) <= 4
-
-
-true_positive = bincount[3]
-true_negative = bincount[-3]
-false_positive = bincount[1]
-false_negative = bincount[-1]
-
-print("Reinheit:", true_positive / (true_positive + false_positive))
-print("Effizienz:", true_positive / (true_positive + false_negative))
-print("Genauigkeit:", (true_positive + true_negative) / (true_positive + true_negative + false_positive + false_negative))
+plot = False
+if plot:
+    fig = plt.figure()
+    ax = fig.add_subplot(111, projection='3d')
+    ax.scatter(np.log(test_data[:, 0]), test_data[:, 1], test_data[:, 2], c=test_labels)
+    # plt.scatter(test_data[:, 0], test_data[:, 1], c=test_labels)
+    plt.show()
