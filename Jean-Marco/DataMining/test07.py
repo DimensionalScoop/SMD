@@ -10,13 +10,13 @@ train = pd.read_csv('train_new.csv')
 test = pd.read_csv('test_new.csv')
 test_val = np.matrix(test)
 x_test = test_val[:, 1:]
-x_test = preprocessing.normalize(x_test)
+#x_test = preprocessing.normalize(x_test)
 
 train_val = np.matrix(train)
 x = train_val[:, 1:-1]
 y = train_val[:, -1]
 
-x = preprocessing.normalize(x)
+#x = preprocessing.normalize(x)
 
 y = np.ravel(y)
 
