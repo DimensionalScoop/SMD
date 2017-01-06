@@ -9,7 +9,7 @@ from sklearn import linear_model
 # list(train)[37]
 
 # import data made by test00.py
-train = pd.read_csv('train_new.csv')
+train = pd.read_csv('train_new_log.csv')
 
 #######
 
@@ -17,6 +17,7 @@ sets = np.transpose(train.values)
 corrvalues = np.corrcoef(sets)[-1]
 corr_set = pd.Series(corrvalues, index = list(train))
 print(corr_set.sort_values())
+
 
 SalePrice = train['SalePrice']
 OverallQual = train['OverallQual']
@@ -35,29 +36,31 @@ regr_GrLivArea.fit(GrLivArea_v, SalePrice_v)
 
 plt.ylabel('Sale Price')
 plt.xlabel('Overall Quality')
-plt.plot(OverallQual, SalePrice, 'b.', markersize=2)
-plt.plot(OverallQual_v, regr_OverallQual.predict(OverallQual_v))
+plt.plot(OverallQual, np.exp(SalePrice)-1, 'b.', markersize=2)
+plt.scatter(OverallQual_v, np.exp(regr_OverallQual.predict(OverallQual_v))-1)
 plt.savefig('overall_qual.pdf')
 plt.clf()
 
 
 plt.ylabel('Sale Price')
 plt.xlabel('Ground Living Area')
-plt.plot(GrLivArea, SalePrice, 'b.', markersize=2)
-plt.plot(GrLivArea_v, regr_GrLivArea.predict(GrLivArea_v))
+plt.plot(GrLivArea, np.exp(SalePrice)-1, 'b.', markersize=2)
+plt.plot(GrLivArea_v, np.exp(regr_GrLivArea.predict(GrLivArea_v))-1)
 plt.savefig('GrLivArea.pdf')
 plt.clf()
 
 plt.ylabel('Sale Price')
 plt.xlabel('Garage Caes')
-plt.plot(GarageCars, SalePrice, 'b.',markersize=2)
+plt.plot(GarageCars, np.exp(SalePrice)-1, 'b.',markersize=2)
 plt.savefig('garage_cars.pdf')
 plt.clf()
 
+
+
 # Differences in Prices
 
-diff_OverallQual = np.abs(regr_OverallQual.predict(OverallQual_v) - SalePrice_v)
-diff_GrLivArea = np.abs(regr_GrLivArea.predict(GrLivArea_v) - SalePrice_v)
+diff_OverallQual = np.abs(np.exp(regr_OverallQual.predict(OverallQual_v)) - np.exp(SalePrice_v))
+diff_GrLivArea = np.abs(np.exp(regr_GrLivArea.predict(GrLivArea_v)) - np.exp(SalePrice_v))
 print(np.mean(diff_OverallQual))
 print(np.mean(diff_GrLivArea))
 
