@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?><process version="7.2.003">
+  <context>
+    <input/>
+    <output/>
+    <macros/>
+  </context>
+  <operator activated="true" class="process" compatibility="7.2.003" expanded="true" name="Process">
+    <parameter key="logverbosity" value="init"/>
+    <parameter key="random_seed" value="2001"/>
+    <parameter key="send_mail" value="never"/>
+    <parameter key="notification_email" value=""/>
+    <parameter key="process_duration_for_mail" value="30"/>
+    <parameter key="encoding" value="SYSTEM"/>
+    <process expanded="true">
+      <operator activated="true" class="retrieve" compatibility="7.2.003" expanded="true" height="68" name="Retrieve train" width="90" x="45" y="136">
+        <parameter key="repository_entry" value="//Local Repository/train"/>
+      </operator>
+      <operator activated="true" class="replace_missing_values" compatibility="7.2.003" expanded="true" height="103" name="Replace Missing Values" width="90" x="179" y="136">
+        <parameter key="return_preprocessing_model" value="false"/>
+        <parameter key="create_view" value="false"/>
+        <parameter key="attribute_filter_type" value="all"/>
+        <parameter key="attribute" value=""/>
+        <parameter key="attributes" value=""/>
+        <parameter key="use_except_expression" value="false"/>
+        <parameter key="value_type" value="attribute_value"/>
+        <parameter key="use_value_type_exception" value="false"/>
+        <parameter key="except_value_type" value="time"/>
+        <parameter key="block_type" value="attribute_block"/>
+        <parameter key="use_block_type_exception" value="false"/>
+        <parameter key="except_block_type" value="value_matrix_row_start"/>
+        <parameter key="invert_selection" value="false"/>
+        <parameter key="include_special_attributes" value="false"/>
+        <parameter key="default" value="average"/>
+        <list key="columns"/>
+      </operator>
+      <operator activated="true" class="loop" compatibility="7.2.003" expanded="true" height="82" name="Loop" width="90" x="246" y="289">
+        <parameter key="set_iteration_macro" value="true"/>
+        <parameter key="macro_name" value="k"/>
+        <parameter key="macro_start_value" value="1"/>
+        <parameter key="iterations" value="80"/>
+        <parameter key="limit_time" value="false"/>
+        <parameter key="timeout" value="1"/>
+        <process expanded="true">
+          <operator activated="true" class="featselext:feature_selection_stability_evaluator" compatibility="1.1.004" expanded="true" height="103" name="Stability" width="90" x="246" y="187">
+            <parameter key="repetitions" value="10"/>
+            <parameter key="measure" value="sets"/>
+            <parameter key="subsets_or_bootstrap" value="subsets"/>
+            <parameter key="ratio" value="1.0"/>
+            <parameter key="leave_one_out" value="false"/>
+            <parameter key="sampling_type" value="stratified sampling"/>
+            <parameter key="local_random_seed" value="-1"/>
+            <process expanded="true">
+              <operator activated="true" class="featselext:mrmr_feature_selection" compatibility="1.1.004" expanded="true" height="82" name="MRMR-FS" width="90" x="179" y="136">
+                <parameter key="normalize_weights" value="false"/>
+                <parameter key="sort_weights" value="true"/>
+                <parameter key="sort_direction" value="ascending"/>
+                <parameter key="sets_or_ranks" value="sets"/>
+                <parameter key="calculate full ranking" value="true"/>
+                <parameter key="k" value="%{k}"/>
+                <parameter key="relevance_redundancy_relation" value="quotient"/>
+                <parameter key="use_ensemble_method" value="none"/>
+                <parameter key="ensemble_size" value="10"/>
+                <parameter key="logging" value="false"/>
+              </operator>
+              <connect from_port="exampleset" to_op="MRMR-FS" to_port="example set"/>
+              <connect from_op="MRMR-FS" from_port="weights" to_port="weights"/>
+              <portSpacing port="source_exampleset" spacing="0"/>
+              <portSpacing port="sink_weights" spacing="0"/>
+            </process>
+          </operator>
+          <operator activated="true" class="performance_to_data" compatibility="7.2.003" expanded="true" height="82" name="Performance to Data" width="90" x="447" y="238"/>
+          <connect from_port="input 1" to_op="Stability" to_port="exampleset"/>
+          <connect from_op="Stability" from_port="robustness" to_op="Performance to Data" to_port="performance vector"/>
+          <connect from_op="Performance to Data" from_port="example set" to_port="output 1"/>
+          <portSpacing port="source_input 1" spacing="0"/>
+          <portSpacing port="source_input 2" spacing="0"/>
+          <portSpacing port="sink_output 1" spacing="0"/>
+          <portSpacing port="sink_output 2" spacing="0"/>
+        </process>
+      </operator>
+      <operator activated="true" class="append" compatibility="7.2.003" expanded="true" height="82" name="Append" width="90" x="447" y="238">
+        <parameter key="datamanagement" value="double_array"/>
+        <parameter key="merge_type" value="all"/>
+      </operator>
+      <connect from_op="Retrieve train" from_port="output" to_op="Replace Missing Values" to_port="example set input"/>
+      <connect from_op="Replace Missing Values" from_port="example set output" to_op="Loop" to_port="input 1"/>
+      <connect from_op="Loop" from_port="output 1" to_op="Append" to_port="example set 1"/>
+      <connect from_op="Append" from_port="merged set" to_port="result 1"/>
+      <portSpacing port="source_input 1" spacing="0"/>
+      <portSpacing port="sink_result 1" spacing="0"/>
+      <portSpacing port="sink_result 2" spacing="0"/>
+    </process>
+  </operator>
+</process>

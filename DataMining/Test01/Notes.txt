@@ -1,0 +1,33 @@
+Logbuch über alles was ich versuche:
+
+Test01:
+Wende den MRMR Algorithmus analog zur Vorlesung und Übugnsaufgabe an auf
+gegebene Daten
+=> Ergebnis: Siehe Creenshot: Scheinbar Maximum bei etwa 41. Attibuten
+=> Todo: Mal gucken was passiert, wenn man die Daten
+Normalisiert
+
+
+Test02:
+Wende kNN Algorithmus an. Normalisiere vorher die Daten (jedoch unabhängig
+voneinander)
+=> Todo: Was könnte man besser machen bei der Normierung?
+
+=> Submission mal mit k=3 versucht: Platz 2329/2987 und 0.17084 Rating. Its
+Something... ^^
+Test03:
+Kreuzvalidiere kNN Algorithmus. Vorher Daten Normalisiert
+=> ToDO: Verschiedene Sachen probieren. k Verändern, Norierung ändern, Metrik
+ändern, Anzahl Attribute ändern, etc. pp.
+
+=> Ergebnis: Variation von k scheint zu zeigen, dass wir bei einer
+durchschnittlichen Abwichung von ca. 36000 stecken bleiben ab k=2.
+=> Ergebnis: OHne Normalisierung Abweichung >40000
+=> "Interquartile Range" scheint beste Ergebnisse zu bringen (sehr leicht
+besser bzw. äquivalent zu Z-TRansformation, aber deutlcih besser als die
+anderne Möglichkeiten)
+=> Weighted vote erstaunlicherweise ohne große Verbesserung
+
+Test02:
+
+Suche mit MRMR Algorithmuus die i besten Werte aus, wähle daraus die k nächsten Nachbarn. Per Kreuzvalidierung auf den Trainingsdaten ergibt sich k=11 und i=74. Dadurch verbessert sich der naive k=3 Ansatz ohne MRMR um 48 Plätze auf 0.16577 (Platz 2282/2988)
