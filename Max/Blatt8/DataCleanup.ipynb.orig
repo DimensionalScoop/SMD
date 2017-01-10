@@ -2,7 +2,7 @@
  "cells": [
   {
    "cell_type": "code",
-   "execution_count": 69,
+   "execution_count": 322,
    "metadata": {
     "collapsed": true
    },
@@ -17,7 +17,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 70,
+   "execution_count": 323,
    "metadata": {
     "collapsed": true
    },
@@ -29,7 +29,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 71,
+   "execution_count": 324,
    "metadata": {
     "collapsed": false
    },
@@ -47,7 +47,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 72,
+   "execution_count": 325,
    "metadata": {
     "collapsed": true
    },
@@ -61,7 +61,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 73,
+   "execution_count": 326,
    "metadata": {
     "collapsed": true
    },
@@ -101,7 +101,10 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 74,
+<<<<<<< HEAD
+   "execution_count": 327,
+=======
+   "execution_count": null,
    "metadata": {
     "collapsed": true
    },
@@ -142,6 +145,7 @@
   {
    "cell_type": "code",
    "execution_count": 373,
+>>>>>>> b38d5494dfeae8dcd30b896dbae3a73ab2252a87
    "metadata": {
     "collapsed": false
    },
@@ -185,7 +189,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 75,
+   "execution_count": 328,
    "metadata": {
     "collapsed": true
    },
@@ -208,7 +212,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 76,
+   "execution_count": 329,
    "metadata": {
     "collapsed": true
    },
@@ -241,7 +245,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 77,
+   "execution_count": 330,
    "metadata": {
     "collapsed": true
    },
@@ -264,7 +268,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 78,
+   "execution_count": 331,
    "metadata": {
     "collapsed": false
    },
@@ -275,7 +279,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 79,
+   "execution_count": 332,
    "metadata": {
     "collapsed": false
    },
@@ -286,7 +290,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 80,
+   "execution_count": 333,
    "metadata": {
     "collapsed": true
    },
@@ -304,7 +308,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 81,
+   "execution_count": 334,
    "metadata": {
     "collapsed": true
    },
@@ -326,7 +330,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 82,
+   "execution_count": 335,
    "metadata": {
     "collapsed": false
    },
@@ -337,7 +341,7 @@
        "array(['1Fam', '2fmCon', 'Duplex', 'Twnhs', 'TwnhsE'], dtype=object)"
       ]
      },
-     "execution_count": 82,
+     "execution_count": 335,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -355,7 +359,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 83,
+   "execution_count": 336,
    "metadata": {
     "collapsed": false
    },
@@ -372,7 +376,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 84,
+   "execution_count": 337,
    "metadata": {
     "collapsed": true
    },
@@ -388,7 +392,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 85,
+   "execution_count": 338,
    "metadata": {
     "collapsed": false
    },
@@ -408,7 +412,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 86,
+   "execution_count": 339,
    "metadata": {
     "collapsed": true
    },
@@ -444,12 +448,12 @@
     "       'Veenker':98    ,#Veenker\n",
     "}\n",
     "\n",
-    "total_dframe['gen_nbrhd_multipliers'] = total_dframe['Neighborhood'].map(multipliers_scores) "
+    "#total_dframe['gen_nbrhd_multipliers'] = total_dframe['Neighborhood'].map(multipliers_scores) "
    ]
   },
   {
    "cell_type": "code",
-   "execution_count": 87,
+   "execution_count": 340,
    "metadata": {
     "collapsed": false
    },
@@ -460,7 +464,7 @@
        "{'Names'}"
       ]
      },
-     "execution_count": 87,
+     "execution_count": 340,
      "metadata": {},
      "output_type": "execute_result"
     }
@@ -472,7 +476,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 88,
+   "execution_count": 341,
    "metadata": {
     "collapsed": false,
     "scrolled": true
@@ -494,7 +498,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 89,
+   "execution_count": 342,
    "metadata": {
     "collapsed": true
    },
@@ -512,7 +516,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 90,
+   "execution_count": 343,
    "metadata": {
     "collapsed": true
    },
@@ -529,7 +533,7 @@
     "                     'OpenPorchSF', 'EnclosedPorch', '3SsnPorch', 'ScreenPorch', 'PoolArea', 'MiscVal','OverallQual', 'OverallCond',\n",
     "                    'gen_discount','gen_transport','gen_loudness', 'gen_total_porch', 'gen_parkness','gen_electrical_quality',\n",
     "                    'gen_foundation','gen_story', 'gen_dwelling','gen_lot_config','gen_shape','gen_zoning',\n",
-    "                    'gen_subclass','gen_airport', 'gen_nbrhd_multipliers']\n",
+    "                    'gen_subclass','gen_airport']\n",
     "\n",
     "# 'gen_nbrhd_multipliers', ,'gen_airport'\n",
     "\n",
@@ -571,7 +575,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 91,
+   "execution_count": 344,
    "metadata": {
     "collapsed": true
    },
@@ -586,7 +590,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 92,
+   "execution_count": 345,
    "metadata": {
     "collapsed": false
    },
@@ -600,7 +604,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 93,
+   "execution_count": 346,
    "metadata": {
     "collapsed": false
    },
@@ -612,7 +616,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 94,
+   "execution_count": 347,
    "metadata": {
     "collapsed": true
    },
@@ -626,7 +630,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 95,
+   "execution_count": 348,
    "metadata": {
     "collapsed": false
    },
@@ -638,7 +642,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 96,
+   "execution_count": 349,
    "metadata": {
     "collapsed": false
    },
@@ -651,7 +655,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 97,
+   "execution_count": 350,
    "metadata": {
     "collapsed": false
    },
@@ -669,7 +673,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 98,
+   "execution_count": 351,
    "metadata": {
     "collapsed": false
    },
@@ -697,7 +701,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 99,
+   "execution_count": 352,
    "metadata": {
     "collapsed": false
    },
@@ -709,7 +713,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 100,
+   "execution_count": 354,
    "metadata": {
     "collapsed": false
    },
@@ -779,7 +783,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 101,
+   "execution_count": 355,
    "metadata": {
     "collapsed": true
    },
@@ -804,7 +808,7 @@
   },
   {
    "cell_type": "code",
-   "execution_count": 102,
+   "execution_count": 356,
    "metadata": {
     "collapsed": false
    },
