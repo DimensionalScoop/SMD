@@ -18,9 +18,9 @@ print(a)
 ### Part 2
 
 
-V = np.matrix( [ [0.00449, 0 ] , [0, 0.00449 ] ] )
+V = np.matrix( [ [0.00449**2, 0 ] , [0, 0.00449**2 ] ] )
 J = np.matrix( [ [0.43607, -0.89991] , [10.46304, 5.07017] ] )
-J = np.transpose(J)
+#J = np.transpose(J)
 tmp2 =  np.matmul( V, np.transpose(J))
 V_neu = np.matmul( J, tmp2)
 
