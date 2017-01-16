@@ -6,11 +6,11 @@ A = np.transpose(A)
 
 tmp = np.matmul(np.transpose(A),A)
 tmpinv = inv(tmp)
-G = tmpinv * np.transpose(A)
+G = np.matmul(tmpinv, np.transpose(A))
 
 y = np.matrix( [-0.032, 0.010, 0.057, 0.068, 0.076, 0.080, 0.031, 0.005, -0.041, -0.09, -0.088, -0.074] )
 y = np.transpose(y)
-a = G*y
+a = np.matmul(G,y)
 print(a)
 
 
