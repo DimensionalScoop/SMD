@@ -36,7 +36,7 @@ print("\n")
 # c)
 
 def g(Lambda, a):
-    return (Lambda - 10*np.log(Lambda) - 10 + 10*np.log(10) - a)
+    return (3*Lambda - 30*np.log(Lambda) - 30 + 30*np.log(10) - a)
 
 def dg(Lambda):
     return (3 - 30/Lambda)

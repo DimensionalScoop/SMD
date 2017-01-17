@@ -46,9 +46,9 @@ ist.
 Die Nullstelle wird numerisch über das Newton-Verfahren mit Kenntnis der Ableitung der negativen Log-Likelihoodfunktion bestimmt, wobei jeweils rechts und links von $\lambda_{min}$ gestartet wird.
 Daraus ergeben sich die Grenzen der Intervalle
 \begin{align*}
-  [7.162, 13.504] \text{ und } len = 6.342 &, \text{ für } a = \frac{1}{2};\\
-  [4.932, 17.722] \text{ und } len = 12.79 &, \text{ für } a = 2;\\
-  [3.245, 22.696] \text{ und } len = 19.451 &, \text{ für } a = \frac{9}{2}.
+  [8.284, 11.939] \text{ und } len = 3.655 &, \text{ für } a = \frac{1}{2};\\
+  [6.779, 14.109] \text{ und } len = 7.33 &, \text{ für } a = 2;\\
+  [5.474, 16.52] \text{ und } len = 11.046 &, \text{ für } a = \frac{9}{2}.
 \end{align*}
 Diese Intervalle sind ebenfalls im Plot eingezeichnet.
 Diese Intervalle können Konfidenzintervalle bzgl. der Schätzung des Erwartungswertes $\lambda$ darstellen.
@@ -60,7 +60,7 @@ Liegt das tatsächliche $\lambda$ außerhalb dieses gewählten Bereiches kann di
 
 Das zweite Taylorpolynom ergibt sich zu
 \begin{align*}
-  T_2(30,-\ln(L)) = 30 - 30\ln(30) + \frac{1}{60} (\lambda-30)^2 + \ln(13! \cdot 9! \cdot 8!).
+  T_2(10,-\ln(L)) = 10 - 30\ln(10) + \frac{3}{20} (\lambda-10)^2 + \ln(13! \cdot 9! \cdot 8!).
 \end{align*}
 Diese Funktion ist in der nächsten Abbildung zu sehen.
 
@@ -75,8 +75,8 @@ Die Intervalle lauten
 \end{align*}
 Die relativen Abweichungen zum exakten Ergebnis lauten
 \begin{align*}
-  42.425 \: \% &, \text{ für } a = \frac{1}{2};\\
-  42.901 \: \% &, \text{ für } a = 2;\\
-  43.682 \: \% &, \text{ für } a = \frac{9}{2}.
+  0.093 \: \% &, \text{ für } a = \frac{1}{2};\\
+  0.369 \: \% &, \text{ für } a = 2;\\
+  0.828 \: \% &, \text{ für } a = \frac{9}{2}.
 \end{align*}
-Diese Abweichungen sind sehr stark und somit ist das Taylorpolynom keine so gute Näherung an die analytisch kompliziertere negative Log-Likelihoodfunktion. Der Vorteil am Polynom ist, dass damit viel besser gerechnet werden kann und es gibt einem in diesem Beispiel kleineren Konfidenzbereich an, in dem sich der Mittelwert bewegen kann.
+Diese Abweichungen sind sehr gering und somit ist das Taylorpolynom eine gute Näherung an die analytisch kompliziertere negative Log-Likelihoodfunktion. Der Vorteil am Polynom ist, dass damit viel besser gerechnet werden kann.
