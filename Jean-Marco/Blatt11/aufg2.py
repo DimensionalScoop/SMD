@@ -17,8 +17,8 @@ def korr(e, g1, g2):
 
 # d
 
-a = fehler(0.1, 169, 200)
-b = fehler(0.1, 200, 169)
+b = fehler(0.1, 169, 200)
+a = fehler(0.1, 200, 169)
 c = korr(0.1, 200, 169)
 print("s1 ", a)
 print("s2 ", b)
@@ -29,8 +29,10 @@ print("Korr", c / np.sqrt(a*b))
 # e
 
 print("Aufgabe e:")
-a = fehler(0.4, 169, 200)
-b = fehler(0.4, 200, 169)
+print("f1 ", f(0.4, 200, 169 ) )
+print("f2 ", f(0.4, 169, 200 ))
+b = fehler(0.4, 169, 200)
+a = fehler(0.4, 200, 169)
 c = korr(0.4, 200, 169)
 print("s1 ", a)
 print("s2 ", b)
