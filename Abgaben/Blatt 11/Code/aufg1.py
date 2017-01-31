@@ -1,0 +1,1 @@
+/home/elayn/SMD/Max/Blatt11/aufg1.py
