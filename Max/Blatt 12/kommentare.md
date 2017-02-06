@@ -11,7 +11,7 @@ Baum durch Ausschlusskriterium ausgewählt.
 hohe Energien kommen deutlich seltener vor.
 
     branch_x: Energie log 
-    limits_x: 1 100 #scheint schon in TeV zu sein
+    limits_x: 0 2 #scheint schon in TeV zu sein
 
     number_bins: 8
     max_number_bins: 8
@@ -20,7 +20,7 @@ hohe Energien kommen deutlich seltener vor.
 Willkürlich gebinned. `AnzahlHits` ist auch log-verteilt.
 
     branch_y: AnzahlHits log
-    number_y_bins: 8
+    number_y_bins: 20 log #scheinbar muss man hier auch log-gen
 
     branch_y: x
     number_y_bins: 8
@@ -35,5 +35,5 @@ Willkürlich gebinned. `AnzahlHits` ist auch log-verteilt.
 ![](fig/cor_y.png)
 ![](fig/cor_anzahlhits.png)
 
-Geeignet sind alle Observablen, da sie eine Korrelation zur Energie aufweisen und untereinander kaum korreliert sind (Korrelationsplots zwischen den Observablen sind in guter Näherung konstante Funktionen). Indes bietet nur `AnzahlHits` eine monotone Korrelation, was eine Entfaltung leichter macht.
+Geeignet sind alle Observablen, da sie eine Korrelation zur Energie aufweisen und untereinander kaum korreliert sind (Korrelationsplots zwischen den Observablen sind in guter Näherung konstante Funktionen). Indes bietet nur `AnzahlHits` eine monotone Korrelation, was eine Entfaltung leichter macht. Die anderen Observablen erlauben zwar in begrenzten Maße eine Vorhersage der Energie, lassen sich aber nicht durch unseren Begriff des Korrelationskoeffizient gebührend beschreibend. 
 
